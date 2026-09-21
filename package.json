@@ -1,0 +1,44 @@
+{
+    "name": "md-math-formatter",
+    "displayName": "Markdown Math Formatter",
+    "description": "Markdownの数式をフォーマットします",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.75.0"
+    },
+    "main": "./extension.js",
+    "activationEvents": [
+        "onLanguage:markdown"
+    ],
+    "scripts": {
+        "package": "vsce package",
+        "build:install": "node scripts/build-and-install.js",
+        "test": "node --test test/"
+    },
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.formatMath",
+                "title": "Markdown: 数式フォーマッタ"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.formatMath",
+                "key": "alt+f",
+                "mac": "option+f",
+                "when": "editorTextFocus && editorLangId == markdown"
+            }
+        ],
+        "configuration": {
+            "title": "Markdown Math Formatter",
+            "properties": {
+                "mdMathFormatter.formatOnSave": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Markdownファイル保存時に数式ブロックを自動整形する"
+                }
+            }
+        }
+    }
+}
