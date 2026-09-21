@@ -38,7 +38,13 @@ class MathExpressionFormatter {
             // 3. _{...} または ^{...} の直後に「コマンド」または「文字」が続く場合、スペースを挿入
             // 例: \bigvee_{i \in I}f(a_i) -> \bigvee_{i \in I} f(a_i)
             // ※ (?:[^{}]|\{[^{}]*\})* により、1階層までの波括弧のネスト(例: _{i \in \{1, 2\}})を許容して安全にマッチさせます。
-            new FormattingRule("spaceAfterSubSuperscript", /([_^]\{(?:[^{}]|\{[^{}]*\})*\})(?=[a-zA-Z\\])/g, "$1 "),
+            new FormattingRule("spaceAfterBracedSubSuperscript", /([_^]\{(?:[^{}]|\{[^{}]*\})*\})(?=[a-zA-Z\\])/g, "$1 "),
+
+            // 3b. _x や ^x (波括弧なしの上付き・下付き文字1つ)の直後に「文字」または「コマンド」が続く場合、スペースを挿入
+            // 例: x^ny -> x^n y, a_ix -> a_i x
+            // ※ LaTeXでは波括弧なしの ^ _ は直後の1文字にしか掛からないため、2文字目以降は別の文字として扱われる。
+            //   よって x^abc は x^a bc(a だけが上付き)として整形するのが正しい。
+            new FormattingRule("spaceAfterSingleCharSubSuperscript", /([_^][A-Za-z0-9])(?=[A-Za-z\\])/g, "$1 "),
 
             // 4. = および := の左右にスペースを挿入・整形 (a=b -> a = b, a:=b -> a := b)
             new FormattingRule("spaceAroundEquals", /(?<=\S)\s*(:=|(?<![!<>=:])=(?!=))\s*(?=\S)/g, " $1 "),
