@@ -1,8 +1,27 @@
 {
     "name": "md-math-formatter",
     "displayName": "Markdown Math Formatter",
-    "description": "Markdownの数式をフォーマットします",
+    "description": "Format Equation in Markdown",
     "version": "0.0.1",
+    "publisher": "ipota",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/IpotaZero/md-math-formatter.git"
+    },
+    "bugs": {
+        "url": "https://github.com/IpotaZero/md-math-formatter/issues"
+    },
+    "categories": [
+        "Formatters",
+        "Other"
+    ],
+    "keywords": [
+        "markdown",
+        "math",
+        "latex",
+        "formatter"
+    ],
     "engines": {
         "vscode": "^1.75.0"
     },
@@ -19,7 +38,7 @@
         "commands": [
             {
                 "command": "extension.formatMath",
-                "title": "Markdown: 数式フォーマッタ"
+                "title": "Markdown: Equation Formatter"
             }
         ],
         "keybindings": [
@@ -36,7 +55,7 @@
                 "mdMathFormatter.formatOnSave": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Markdownファイル保存時に数式ブロックを自動整形する"
+                    "description": "Format on save"
                 }
             }
         }

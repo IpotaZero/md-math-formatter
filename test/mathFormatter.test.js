@@ -57,6 +57,7 @@ test("spaceAroundEquals: = と := の左右にスペースを挿入・整形す�
     assert.equal(formatMath("a  =  b"), "a = b")
 })
 
+// スペース入れた方がいいけど別に使わないから放置してるだけ。
 test("spaceAroundEquals: != <= >= == のような複合演算子は壊さない", () => {
     assert.equal(formatMath("a!=b"), "a!=b")
     assert.equal(formatMath("a<=b"), "a<=b")
@@ -74,8 +75,6 @@ test("spaceAroundArithmeticOperators: 単項の符号(-)はスペースを挿入
     assert.equal(formatMath("x^{-1}"), "x^{-1}")
     assert.equal(formatMath("(-1)"), "(-1)")
     assert.equal(formatMath("-x"), "-x")
-    // ※ カンマの直後には別ルール(spaceAfterPunctuation)でスペースが入るため "f(x, -y)" になる。
-    //   ここで確認したいのは、-y の "-" 自体には前後にスペースが入らない(単項として保持される)こと。
     assert.equal(formatMath("f(x,-y)"), "f(x, -y)")
 })
 
